@@ -1,0 +1,7 @@
+/logs
+/cache
+/wandb
+/results
+/penv
+dataloaders/Fashion_MNIST
+dataloaders/MNIST
