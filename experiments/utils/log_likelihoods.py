@@ -33,7 +33,7 @@ def get_density_ratio(outputs):
     softmax = nn.Softmax(dim=1)
     yhats_soft = softmax(outputs)
     density_ratio = torch.reciprocal(yhats_soft[:,0].detach())-1
-    return density_ratio
+    return torch.log(density_ratio)
 
 def get_log_likelihood(prod, final_test, use_wandb):
 
@@ -54,10 +54,12 @@ def get_log_likelihood(prod, final_test, use_wandb):
 
     # sum over pixels
     p_xn = torch.sum(torch.sum(p_xn, 1), 1)
+    print(f"p_xn : {p_xn}")
     p_xn = p_xn.type(dtype).to(device)
 
     # get total likelihood
     p_x0 = torch.log(prod) + p_xn
+    print(f"p_x0 : {p_x0}")
     avg_likelihood = torch.mean(p_x0).item()
 
     if use_wandb:

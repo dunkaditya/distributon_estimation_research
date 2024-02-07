@@ -51,13 +51,13 @@ if __name__ == "__main__":
     os.makedirs("cache/results_cache", exist_ok=True)
     os.makedirs("cache/results_cache/ratio_prod", exist_ok=True)
 
-    print(f"Density ratio {args.set}: {density_ratio}")
-
     prod = None
     filename = f"cache/results_cache/ratio_prod/{args.modelid}_{args.datasetid}.pt"
     if os.path.isfile(filename):
         prod = torch.load(filename)
-        prod *= density_ratio
+        print(f"Density ratio {args.set}: {density_ratio}")
+        prod += density_ratio
+        print(f"Prod {args.set}: {prod}")
     else:
         prod = density_ratio
     torch.save(prod, filename)

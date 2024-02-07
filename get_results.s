@@ -15,5 +15,5 @@ singularity exec --nv \
 /scratch/work/public/singularity/cuda11.6.124-cudnn8.4.0.27-devel-ubuntu20.04.4.sif /bin/bash -c "
 
 source /ext3/env.sh;
-python experiments/distribution_analysis/get_results.py --size 10 --datasetid 7dd9f0ea --modelid 811110cc
+python experiments/distribution_analysis/get_results.py --size 10 --datasetid 6c48aed9 --modelid 813915dc --turnoff_wandb
 "
